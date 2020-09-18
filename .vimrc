@@ -117,3 +117,7 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+" You can use VIM over SSH. This is called netrw of VIM. 
+" See comment from tagwint user, URL: https://github.com/vim/vim/issues/2329
+" How to use? : #vim scp://<host>//tmp/sample.txt
+autocmd BufRead scp://* :set bt=acwrite
