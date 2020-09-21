@@ -119,5 +119,27 @@ endif
 
 " You can use VIM over SSH. This is called netrw of VIM. 
 " See comment from tagwint user, URL: https://github.com/vim/vim/issues/2329
-" How to use? : #vim scp://<host>//tmp/sample.txt
 autocmd BufRead scp://* :set bt=acwrite
+
+" Global tags preferences
+source /usr/local/share/gtags/gtags.vim
+map <C-g> :Gtags 
+map <S-n> :cn<CR> :execute 'norm zz' <CR>
+map <S-p> :cp<CR> :execute 'norm zz' <CR>
+
+" To reopen a closed VIM window with Shift-X keyword below variable assignment
+" & function creation code is written. To take it further a mapping shortcut is created to
+" acheive it using Shift-X keyword.
+augroup bufclosetrack
+  au!
+  autocmd WinLeave * let g:lastWinName = @%
+augroup END
+function! LastWindow()
+  exe "split " . g:lastWinName
+endfunction
+command -nargs=0 LastWindow call LastWindow()
+" Create a shortcut to for above function
+nnoremap <S-x> :call LastWindow()<CR>
+
+" Settings related to window managment
+nnoremap <leader>t :tabnew 
