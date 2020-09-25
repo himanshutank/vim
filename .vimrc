@@ -143,3 +143,9 @@ nnoremap <S-x> :call LastWindow()<CR>
 
 " Settings related to window managment
 nnoremap <leader>t :tabnew 
+
+" Python code folding 
+" source : https://stackoverflow.com/questions/357785/what-is-the-recommended-way-to-use-vim-folding-for-python-code
+set foldmethod=indent
+nnoremap <space> za
+vnoremap <space> zf
